@@ -78,6 +78,7 @@ functions:
           path: todos
           cors: true
           authorizer: Auth
+          reqValidatorName: RequestBodyValidator
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-get-todo-role-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
@@ -107,12 +108,12 @@ functions:
           path: todos
           cors: true
           authorizer: Auth
-          requestValidatorName: RequestBodyValidator
-          documentation:
-            summary: Create a new todo task
-            description: Create a todo task
-            requestModels:
-              'application/json': CreateTodoRequest
+          reqValidatorName: RequestBodyValidator
+          # documentation:
+          #   summary: Create a new todo task
+          #   description: Create a todo task
+          #   requestModels:
+          #     'application/json': CreateTodoRequest
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-create-todo-role-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
@@ -137,11 +138,11 @@ functions:
           cors: true
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
-          documentation:
-            summary: Update a new todo task
-            description: Update a todo task
-            requestModels:
-              'application/json': UpdateTodoRequest
+          # documentation:
+          #   summary: Update a new todo task
+          #   description: Update a todo task
+          #   requestModels:
+          #     'application/json': UpdateTodoRequest
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-update-todo-role-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
@@ -163,6 +164,7 @@ functions:
       - http:
           method: delete
           path: todos/{todoId}
+          reqValidatorName: RequestBodyValidator
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-delete-todo-role-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
@@ -185,6 +187,7 @@ functions:
           path: todos/{todoId}/attachment
           cors: true
           authorizer: Auth
+          reqValidatorName: RequestBodyValidator
     iamRoleStatementsName: ${self:provider.environment.PROJECT_NAME}-generate-s3-upload-url-role-${self:provider.stage}
     iamRoleStatements:
       - Effect: Allow
