@@ -46,7 +46,7 @@ export const createTodo = async (
 export const deleteTodo = async (
   DeleteTodoRequest: DeleteTodoRequest
 ): Promise<DeleteTodoRequest> => {
-  return await todosAccess.deleteTodo({
+  return await TodoAccessService.deleteTodo({
     todoId: DeleteTodoRequest.todoId,
     userId: DeleteTodoRequest.userId
   })

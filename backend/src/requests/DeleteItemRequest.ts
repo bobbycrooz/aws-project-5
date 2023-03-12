@@ -1,4 +1,4 @@
 export interface DeleteTodoRequest {
-  userId: string
+  userId?: string
   todoId: string
 }

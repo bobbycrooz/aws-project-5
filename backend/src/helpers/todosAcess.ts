@@ -71,7 +71,6 @@ export class TodoAccess {
 
     return key
   }
-
   async updateTodo(
     updatedTodo: UpdateTodoRequest,
     key: DeleteTodoRequest
