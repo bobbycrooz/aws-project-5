@@ -6,17 +6,30 @@ import { cors, httpErrorHandler } from 'middy/middlewares'
 
 import { deleteTodo } from '../../helpers/todos'
 import { getUserId } from '../utils'
+import { createLogger } from '../../utils/logger'
+const logger = createLogger('todoAccess')
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+    logger.info('Processing event: ', event)
+
     const todoId = event.pathParameters.todoId
-    // TODO: Remove a TODO item by id
+
     const userId = getUserId(event)
-    await deleteTodo(todoId, userId)
+
+    const key = {
+      todoId: todoId,
+      userId
+    }
+
+    await deleteTodo(key)
 
     return {
-      statusCode: 204,
-      body: ''
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      body: ' '
     }
   }
 )
